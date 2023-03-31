@@ -5,7 +5,7 @@ const SideBar = () => {
     const [data,setData] = useState([])
     const {reFetch,setIsFilter,setReFetch,items,setItems} = useContext(courseInfo)
     useEffect(()=>{
-        fetch('http://localhost:5000/allCategories')
+        fetch('https://task-server-five-brown.vercel.app/allCategories')
         .then((res) => res.json())
         .then((data) => setData(data));
     },[reFetch])

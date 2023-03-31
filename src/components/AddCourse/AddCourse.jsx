@@ -18,7 +18,7 @@ const AddCourse = () => {
         price
      }
     
-     fetch('http://localhost:5000/add',{
+     fetch('https://task-server-five-brown.vercel.app/add',{
      method: 'POST',
      headers: {
         "content-type": "application/json",

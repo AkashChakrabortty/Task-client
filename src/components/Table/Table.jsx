@@ -5,10 +5,10 @@ const Table = () => {
     const [data,setData] = useState([])
     const {reFetch, isFilter,items} = useContext(courseInfo)
     useEffect(()=>{
-        fetch(`http://localhost:5000/${isFilter? `filter/${items}` : 'allCourses'}`)
+        fetch(`https://task-server-five-brown.vercel.app/${isFilter? `filter/${items}` : 'allCourses'}`)
         .then((res) => res.json())
         .then((data) => setData(data));
-    },[reFetch])
+    },[reFetch,isFilter,items])
   
   return (
     <div className="col-8">
