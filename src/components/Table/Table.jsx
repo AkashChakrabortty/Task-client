@@ -3,12 +3,13 @@ import { courseInfo } from "../../context/AuthProvider";
 
 const Table = () => {
     const [data,setData] = useState([])
-    const {reFetch} = useContext(courseInfo)
+    const {reFetch, isFilter,items} = useContext(courseInfo)
     useEffect(()=>{
-        fetch('http://localhost:5000/allCourses')
+        fetch(`http://localhost:5000/${isFilter? `filter/${items}` : 'allCourses'}`)
         .then((res) => res.json())
         .then((data) => setData(data));
     },[reFetch])
+  
   return (
     <div className="col-8">
       <table className="table">
