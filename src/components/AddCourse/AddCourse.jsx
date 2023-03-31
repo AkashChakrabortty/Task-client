@@ -1,6 +1,9 @@
-import React from "react";
-
+import React, { useContext } from "react";
+import { courseInfo } from "../../context/AuthProvider";
+import toast, { Toaster } from 'react-hot-toast';
+const notify = () => toast('Course added Successful');
 const AddCourse = () => {
+    const {reFetch,setReFetch} = useContext(courseInfo)
     const addProduct = (e)=> {
      e.preventDefault();
      const name = e.target.name.value;
@@ -24,7 +27,9 @@ const AddCourse = () => {
      })
      .then((res) => res.json())
       .then((data) => {
-       console.log(data)
+        setReFetch(!reFetch)
+        notify()
+        e.target.reset()
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -87,6 +92,7 @@ const AddCourse = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary">Add Course</button>
+        <Toaster />
       </form>
     </div>
   );

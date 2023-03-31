@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { courseInfo } from "../../context/AuthProvider";
 
 const Table = () => {
     const [data,setData] = useState([])
+    const {reFetch} = useContext(courseInfo)
     useEffect(()=>{
         fetch('http://localhost:5000/allCourses')
         .then((res) => res.json())
         .then((data) => setData(data));
-    },[])
+    },[reFetch])
   return (
     <div className="col-8">
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">
@@ -23,7 +25,7 @@ const Table = () => {
         <tbody>
             {
                 data.map((info)=>{
-                    return  <tr>
+                    return  <tr key={info._id}>
                     <td>{info.name}</td>
                     <td>{info.instructor}</td>
                     <td>{info.category}</td>
